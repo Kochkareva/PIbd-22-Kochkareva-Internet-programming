@@ -18,5 +18,17 @@ public class IpLabsApplication {
 	public String hello(@RequestParam(value = "name", defaultValue = "World")String name){
 		return String.format("Hello %s!", name);
 	}
+
+	@GetMapping("/task")
+	public String task(@RequestParam(value = "str")String str,
+					   @RequestParam(value = "flag")Boolean flag){
+		String str2 ="";
+		if(flag) {
+			str2 = str.toUpperCase();
+		}else{
+			str2=str.toLowerCase();
+		}
+		return String.format("Hello %s!", str2);
+	}
 }
 
