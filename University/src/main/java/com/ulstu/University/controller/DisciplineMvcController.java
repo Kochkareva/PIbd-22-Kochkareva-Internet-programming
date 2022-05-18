@@ -1,8 +1,9 @@
 package com.ulstu.University.controller;
 
-import com.ulstu.University.model.Discipline;
 import com.ulstu.University.service.DepartmentService;
 import com.ulstu.University.service.TypeReportingService;
+import com.ulstu.University.user.model.UserRole;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ulstu.University.service.DisciplineService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/discipline")
@@ -31,6 +31,7 @@ public class DisciplineMvcController {
         this.departmentService = departmentService;
     }
     @GetMapping
+    @Secured({UserRole.AsString.TEACHER, UserRole.AsString.STUDENT, UserRole.AsString.ADMIN})
     public String getDisciplines(Model model) {
         model.addAttribute("disciplines",
                 disciplineService.findAllDisciplines().stream()
@@ -40,9 +41,9 @@ public class DisciplineMvcController {
     }
 
     @GetMapping(value = {"/edit", "/edit/{id}"})
+    @Secured({UserRole.AsString.TEACHER, UserRole.AsString.ADMIN})
     public String editDiscipline(@PathVariable(required = false) Long id,
                                  Model model) {
-
         model.addAttribute("departments",
                 departmentService.findAllDepartments().stream()
                         .map(DepartmentDto::new)

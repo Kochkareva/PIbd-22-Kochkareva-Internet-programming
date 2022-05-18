@@ -2,7 +2,6 @@ package com.ulstu.University.controller;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.ulstu.University.model.Department;
-import com.ulstu.University.model.Discipline;
 import com.ulstu.University.model.TypeReporting;
 
 import javax.validation.constraints.NotBlank;
@@ -17,8 +16,6 @@ public class DepartmentDto {
     @NotBlank(message = "Password can't be null or empty")
     private String Password;
 
-    private List<Discipline> disciplines;
-
     public DepartmentDto(){
 
     }
@@ -28,7 +25,7 @@ public class DepartmentDto {
         this.DepartmentName = department.getDepartmentName();
         this.Login = department.getLogin();
         this.Password = department.getPassword();
-        this.disciplines = department.getDisciplines();
+    //    this.typeReportings = department.getTypeReportings();
     }
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
@@ -46,12 +43,4 @@ public class DepartmentDto {
 
     public String getPassword(){return Password;}
     public void setPassword(String Password){this.Password = Password;}
-
-
-    public List<Discipline> getDisciplines() {
-        return disciplines;
-    }
-    public void setDisciplines(List<Discipline> disciplines) {
-        this.disciplines = disciplines;
-    }
 }

@@ -76,12 +76,9 @@ public class Department {
     public void setDisciplines (Discipline discipline)
     {
         disciplines.add(discipline);
-        /*
         if(discipline.getDepartment()!= this){
             discipline.setDepartment(this);
         }
-
-         */
     }
     public List<Discipline> getDisciplines(){return this.disciplines;}
 

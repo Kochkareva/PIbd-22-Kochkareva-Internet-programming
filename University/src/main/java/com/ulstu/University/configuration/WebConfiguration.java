@@ -1,4 +1,4 @@
-package com.ulstu.University;
+package com.ulstu.University.configuration;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -13,6 +13,7 @@ public class WebConfiguration implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         WebMvcConfigurer.super.addViewControllers(registry);
         registry.addViewController("rest-test");
+        registry.addViewController("login");
     }
     @Override
     public void addCorsMappings(CorsRegistry registry) {

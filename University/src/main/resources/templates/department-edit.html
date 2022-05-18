@@ -20,30 +20,6 @@
             <label for="Password" class="form-label">Пароль</label>
             <input type="text" class="form-control" id="Password" th:field="${departmentDto.Password}" required="true">
         </div>
-
-
-        <span th:if="${id != null}" style="margin-top: 1%;"> Дисциплины: </span>
-        <div th:if="${id != null}" class="table-responsive">
-            <table class="table">
-                <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">id</th>
-                    <th scope="col">Название дисциплины</th>
-                    <th scope="col"></th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr th:each="discipline, iterator: ${departmentDto.disciplines}">
-                    <th scope="row" th:text="${iterator.index} + 1"/>
-                    <td th:text="${discipline.id}"/>
-                    <td th:text="${discipline.DisciplineName}" style="width: 60%"/>
-                    <td style="width: 10%">
-                </tr>
-                </tbody>
-            </table>
-        </div>
-
         <div class="mb-3">
             <button type="submit" class="btn btn-primary button-fixed">
                 <span th:if="${id == null}">Добавить</span>

@@ -35,7 +35,6 @@ public class Discipline {
     public Discipline(String DisciplineName, Department department){
         this.DisciplineName = DisciplineName;
         this.department = department;
-        setDepartment(department);
     }
 
     public Long getId() {
@@ -87,9 +86,6 @@ public class Discipline {
 
     public void setDepartment(Department department) {
         this.department = department;
-        if(!department.getDisciplines().contains(this)){
-            department.setDisciplines(this);
-        }
     }
     public Department getDepartment() {
         return department;

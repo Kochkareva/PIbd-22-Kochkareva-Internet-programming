@@ -1,7 +1,7 @@
 package com.ulstu.University.controller;
 
-import com.ulstu.University.model.Discipline;
-import com.ulstu.University.service.DisciplineService;
+import com.ulstu.University.user.model.UserRole;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,19 +13,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.ulstu.University.service.DepartmentService;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 @RequestMapping("/department")
 public class DepartmentMvcController {
     private final DepartmentService departmentService;
-    private final DisciplineService disciplineService;
 
-    public DepartmentMvcController(DepartmentService departmentService, DisciplineService disciplineService){
-        this.departmentService = departmentService;
-        this.disciplineService = disciplineService;
-    }
+    public DepartmentMvcController(DepartmentService departmentService){this.departmentService = departmentService;}
     @GetMapping
+    @Secured({UserRole.AsString.TEACHER, UserRole.AsString.ADMIN})
     public String getDepartments(Model model) {
         model.addAttribute("departments",
                 departmentService.findAllDepartments().stream()
@@ -35,15 +31,9 @@ public class DepartmentMvcController {
     }
 
     @GetMapping(value = {"/edit", "/edit/{id}"})
+    @Secured({UserRole.AsString.TEACHER, UserRole.AsString.ADMIN})
     public String editDepartment(@PathVariable(required = false) Long id,
                               Model model) {
-        /*
-        model.addAttribute("disciplines",
-                disciplineService.findAllDisciplines().stream()
-                        .map(DisciplineDto::new)
-                        .toList());
-
-         */
         if (id == null || id <= 0) {
             model.addAttribute("departmentDto", new DepartmentDto());
         } else {

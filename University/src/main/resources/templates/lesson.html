@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{default}" xmlns:th="http://www.w3.org/1999/xhtml">
+      layout:decorate="~{default}" xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 </head>
 <body>
 <div layout:fragment="content">
     <div>
-        <a class="btn btn-success button-fixed"
+        <a sec:authorize="hasRole('ROLE_TEACHER') or hasRole('ROLE_ADMIN')" class="btn btn-success button-fixed"
            th:href="@{/lesson/edit/}">
             <i class="fa-solid fa-plus"></i> Добавить
         </a>
@@ -33,11 +34,11 @@
                 <td th:text="${lesson.Department.DepartmentName}" style="width: 60%"/>
                 <td style="width: 10%">
                     <div class="btn-group" role="group" aria-label="Basic example">
-                        <a class="btn btn-warning button-fixed button-sm"
+                        <a sec:authorize="hasRole('ROLE_TEACHER') or hasRole('ROLE_ADMIN')" class="btn btn-warning button-fixed button-sm"
                            th:href="@{/lesson/edit/{id}(id=${lesson.id})}">
                             <i class="fa fa-pencil" aria-hidden="true"></i> Изменить
                         </a>
-                        <button type="button" class="btn btn-danger button-fixed button-sm"
+                        <button sec:authorize="hasRole('ROLE_TEACHER') or hasRole('ROLE_ADMIN')" type="button" class="btn btn-danger button-fixed button-sm"
                                 th:attr="onclick=|confirm('Удалить запись?') && document.getElementById('remove-${lesson.id}').click()|">
                             <i class="fa fa-trash" aria-hidden="true"></i> Удалить
                         </button>

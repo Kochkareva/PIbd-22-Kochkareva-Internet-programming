@@ -1,6 +1,8 @@
 package com.ulstu.University.controller;
 
 import com.ulstu.University.service.DepartmentService;
+import com.ulstu.University.user.model.UserRole;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,6 +26,7 @@ public class LessonMvcController {
         this.departmentService = departmentService;
     }
     @GetMapping
+    @Secured({UserRole.AsString.TEACHER, UserRole.AsString.STUDENT, UserRole.AsString.ADMIN})
     public String getLessons(Model model) {
         model.addAttribute("lessons",
                 lessonService.findAllLessons().stream()
@@ -33,6 +36,7 @@ public class LessonMvcController {
     }
 
     @GetMapping(value = {"/edit", "/edit/{id}"})
+    @Secured({UserRole.AsString.TEACHER, UserRole.AsString.ADMIN})
     public String editLesson(@PathVariable(required = false) Long id,
                                  Model model) {
         model.addAttribute("departments",

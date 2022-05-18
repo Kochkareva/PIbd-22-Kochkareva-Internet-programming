@@ -2,6 +2,8 @@ package com.ulstu.University.controller;
 
 import com.ulstu.University.service.DepartmentService;
 import com.ulstu.University.service.DisciplineService;
+import com.ulstu.University.user.model.UserRole;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,6 +30,7 @@ public class TypeReportingMvcController {
         this.disciplineService = disciplineService;
     }
     @GetMapping()
+    @Secured({UserRole.AsString.TEACHER, UserRole.AsString.ADMIN})
     public String getTypeReportings(Model model) {
         model.addAttribute("typeReportings",
                 typeReportingService.findAllTypeReportings().stream()
@@ -37,6 +40,7 @@ public class TypeReportingMvcController {
     }
 
     @GetMapping(value = {"/edit", "/edit/{id}"})
+    @Secured({UserRole.AsString.TEACHER, UserRole.AsString.ADMIN})
     public String editTypeReporting(@PathVariable(required = false) Long id, Model model) {
         model.addAttribute("departments",
                 departmentService.findAllDepartments().stream()

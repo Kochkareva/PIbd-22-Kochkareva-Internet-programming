@@ -1,5 +1,5 @@
 package com.ulstu.University.controller;
-import com.ulstu.University.WebConfiguration;
+import com.ulstu.University.configuration.WebConfiguration;
 import com.ulstu.University.service.TypeReportingService;
 import org.springframework.web.bind.annotation.*;
 
