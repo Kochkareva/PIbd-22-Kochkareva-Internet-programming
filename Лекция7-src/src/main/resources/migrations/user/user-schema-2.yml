@@ -1,0 +1,11 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2022-05-01-schema-1
+      author: user
+      changes:
+        - addColumn:
+            tableName: users
+            columns:
+              - column:
+                  name: role
+                  type: int

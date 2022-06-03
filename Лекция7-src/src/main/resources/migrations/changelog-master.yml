@@ -1,0 +1,13 @@
+databaseChangeLog:
+  - include:
+      file: migrations/student/student-schema-1.yml
+  - include:
+      file: migrations/user/user-schema-1.yml
+  - include:
+      file: migrations/user/user-data-1.yml
+  - include:
+      file: migrations/user/user-schema-2.yml
+  - include:
+      file: migrations/user/user-data-2.yml
+  - include:
+      file: migrations/user/user-schema-3.yml

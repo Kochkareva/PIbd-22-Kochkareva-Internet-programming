@@ -1,0 +1,17 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2022-04-15-data-1
+      author: user
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: login
+                  value: admin
+              - column:
+                  name: password
+                  value: $2a$10$WZg1ajfZBi1wqecE85yV..sfw8Fj9z1ZzRBszlDbNn97EKlD2jfsC

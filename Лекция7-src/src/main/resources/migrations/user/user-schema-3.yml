@@ -1,0 +1,8 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2022-05-01-schema-3
+      author: user
+      changes:
+        - addNotNullConstraint:
+            tableName: users
+            columnName: role
